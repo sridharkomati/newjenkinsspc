@@ -10,7 +10,7 @@ stages{
     stage('git'){
         steps{
             git branch: 'declarative',
-                url: 'https://github.com/sridharkomati/springpetclinic-jenkins.git'              
+                url: 'https://github.com/sridharkomati/newjenkinsspc.git'              
         }
     }    
     stage('build'){
