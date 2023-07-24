@@ -9,8 +9,8 @@ pipeline{
 stages{
     stage('git'){
         steps{
-            git branch: 'declarative',
-                url: 'https://github.com/sridharkomati/newjenkinsspc.git'              
+            git branch: 'main',
+                url: 'https://github.com/spring-projects/spring-petclinic.git'              
         }
     }    
     stage('build'){
