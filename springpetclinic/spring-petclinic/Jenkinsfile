@@ -23,7 +23,7 @@ stages{
     } 
     stage('testresults'){
         steps{  
-            archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
+            archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             junit testResults: '**/target/surefire-reports/TEST-*.xml'
         }
     }   
