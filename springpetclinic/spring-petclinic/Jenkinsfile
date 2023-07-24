@@ -1,7 +1,8 @@
 pipeline{
     agent { label 'JDK-17'}
     tools {
-        jdk   'JDK-17'
+        jdk 'JDK-17'
+        maven 'mvn'
     }
        
     triggers { pollSCM('* * * * *')}
