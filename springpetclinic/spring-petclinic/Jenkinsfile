@@ -31,12 +31,25 @@ stages{
                 serverId: "JFROG"
             )    
         }
-    }    
+    }   
+    stage('Build & sonarcube'){
+        steps{
+            withSonarQubeEnv('sonar_cloud'){
+                sh 'mvn clean package sonar:sonar' 
+            }
+
+        }
+    } 
     stage('reporting') {
             steps {
+                archiveArtifacts onlyIfSuccessful : true,
+                       artifacts: '**/target/spring-*.jar'
                 junit testResults: '**/target/surefire-reports/TEST-*.xml'
             }
-        }    
+        }   
+    stage{
+
+    }     
     }
 }
 
