@@ -13,25 +13,25 @@ stages{
                 url: 'https://github.com/spring-projects/spring-petclinic.git'              
         }
     }    
-    stage('Build Maven Project'){
-        steps{
-            rtMavenDeployer (
-                id: "maven-ID",
-                serverId: "JFROG",
-                releaseRepo: 'qtdevops-libs-release-local',
-                snapshotRepo: 'qtdevops-libs-snapshot-local',
-                )
-            rtMavenRun (
-                tool: 'mvn',
-                pom: 'pom.xml',
-                goals: 'clean install',
-                deployerId: "maven-ID",
-                )
-            rtPublishBuildInfo (
-                serverId: "JFROG"
-            )    
-        }
-    }   
+    // stage('Build Maven Project'){
+    //     steps{
+    //         rtMavenDeployer (
+    //             id: "maven-ID",
+    //             serverId: "JFROG",
+    //             releaseRepo: 'qtdevops-libs-release-local',
+    //             snapshotRepo: 'qtdevops-libs-snapshot-local',
+    //             )
+    //         rtMavenRun (
+    //             tool: 'mvn',
+    //             pom: 'pom.xml',
+    //             goals: 'clean install',
+    //             deployerId: "maven-ID",
+    //             )
+    //         rtPublishBuildInfo (
+    //             serverId: "JFROG"
+    //         )    
+    //     }
+    // }   
     stage('Build & sonarcube'){
         steps{
             withSonarQubeEnv('sonar_cloud'){
