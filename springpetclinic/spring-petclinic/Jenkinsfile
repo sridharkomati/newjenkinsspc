@@ -35,7 +35,7 @@ stages{
     stage('Build & sonarcube'){
         steps{
             withSonarQubeEnv('sonar_cloud'){
-                sh 'mvn clean install sonar:sonar -Dsonar.organization=qtdevopssonar -Dsonar.token=6fcc9b95b9032ceb9efb2aead624b321e5948280 -Dsonar.projectkey=qtdevopssonar'
+                sh 'mvn -f springpetclinic/spring-petclinic/pom.xml clean install sonar:sonar -Dsonar.organization=qtdevopssonar -Dsonar.token=6fcc9b95b9032ceb9efb2aead624b321e5948280 -Dsonar.projectkey=qtdevopssonar'
             }
 
         }
