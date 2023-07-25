@@ -9,8 +9,8 @@ pipeline{
 stages{
     stage('git'){
         steps{
-            git branch: 'main',
-                url: 'https://github.com/spring-projects/spring-petclinic.git'              
+            git branch: 'declarative',
+                url: 'https://github.com/sridharkomati/newjenkinsspc.git'              
         }
     }    
     // stage('Build Maven Project'){
@@ -46,12 +46,10 @@ stages{
                        artifacts: '**/target/spring-*.jar'
                 junit testResults: '**/target/surefire-reports/TEST-*.xml'
             }
-        }   
-    stage{
-
+        }
     }     
     }
-}
+
 
 
     
