@@ -23,7 +23,7 @@ stages{
                 )
             rtMavenRun (
                 tool: 'mvn',
-                pom: 'pom.xml',
+                pom: 'springpetclinic/spring-petclinic/pom.xml',
                 goals: 'clean install',
                 deployerId: "maven-ID",
                 )
