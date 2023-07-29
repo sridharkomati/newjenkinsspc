@@ -18,15 +18,15 @@ stages{
             rtMavenDeployer (
                 id: "maven-ID",
                 serverId: "JFROG_CLOUD",
-                releaseRepo: 'qtdevops-libs-release-local',
-                snapshotRepo: 'qtdevops-libs-snapshot-local',
+                releaseRepo: 'samskruti-libs-release-local',
+                snapshotRepo: 'samskruti-libs-snapshot-local',
                 )
             rtMavenRun (
                 tool: 'mvn',
                 pom: 'springpetclinic/spring-petclinic/pom.xml',
                 goals: 'clean install',
                 deployerId: "maven-ID",
-                )
+            )
             rtPublishBuildInfo (
                 serverId: "JFROG_CLOUD"
             )    
