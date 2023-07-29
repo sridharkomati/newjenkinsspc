@@ -32,21 +32,21 @@ stages{
             )    
         }
     }    
-    // stage('Build & sonarcube'){
-    //     steps{
-    //         withSonarQubeEnv('sonar-cloud'){
-    //             sh 'mvn -f springpetclinic/spring-petclinic/pom.xml clean install sonar:sonar -Dsonar.organization=sridhardevops -Dsonar.token=38a2b058cb0a7a17862cf58f21c431a3945582cd -Dsonar.projectKey=sridhardevops'
-    //         }                                                  
+    stage('Build & sonarcube'){
+        steps{
+            withSonarQubeEnv('sonar-cloud'){
+                sh 'mvn -f springpetclinic/spring-petclinic/pom.xml clean install sonar:sonar -Dsonar.organization=sridhardevops -Dsonar.token=38a2b058cb0a7a17862cf58f21c431a3945582cd -Dsonar.projectKey=sridhardevops'
+            }                                                  
 
-    //     }
-    // } 
-    // stage('reporting') {
-    //         steps {
-    //             archiveArtifacts onlyIfSuccessful : true,
-    //                    artifacts: '**/target/spring-*.jar'
-    //             junit testResults: '**/target/surefire-reports/TEST-*.xml'
-    //         }
-    //     }
+        }
+    } 
+    stage('reporting') {
+            steps {
+                archiveArtifacts onlyIfSuccessful : true,
+                       artifacts: '**/target/spring-*.jar'
+                junit testResults: '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
     }     
     }
     
