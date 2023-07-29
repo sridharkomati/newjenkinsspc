@@ -18,8 +18,8 @@ stages{
             rtMavenDeployer (
                 id: "maven-ID",
                 serverId: "JFROG_CLOUD",
-                releaseRepo: 'samskruti-libs-release-local',
-                snapshotRepo: 'samskruti-libs-snapshot-local',
+                releaseRepo: 'sridhar',
+                snapshotRepo: 'sridhar',
                 )
             rtMavenRun (
                 tool: 'mvn',
