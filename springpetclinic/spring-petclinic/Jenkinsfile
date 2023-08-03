@@ -1,44 +1,52 @@
 pipeline{
     agent { label 'JDK-17'}
     tools {
+        jdk 'JDK-17'
         maven 'mvn'
-        jdk   'JDK-17'
     }
        
     triggers { pollSCM('* * * * *')}
 stages{
     stage('git'){
         steps{
-            git branch: 'main',
-                url: 'https://github.com/spring-projects/spring-petclinic.git'              
+            git branch: 'declarative',
+                url: 'https://github.com/sridharkomati/newjenkinsspc.git'              
         }
     }    
-    stage('Build Maven Project'){
+   stage('Build Maven Project'){
         steps{
             rtMavenDeployer (
                 id: "maven-ID",
-                serverId: "JFROG",
-                releaseRepo: 'qtdevops-libs-release-local',
-                snapshotRepo: 'qtdevops-libs-snapshot-local',
+                serverId: "JFROG_CLOUD",
+                releaseRepo: 'sridhar',
+                snapshotRepo: 'sridhar',
                 )
             rtMavenRun (
                 tool: 'mvn',
-                pom: 'pom.xml',
+                pom: 'springpetclinic/spring-petclinic/pom.xml',
                 goals: 'clean install',
                 deployerId: "maven-ID",
-                )
+            )
             rtPublishBuildInfo (
-                serverId: "JFROG"
+                serverId: "JFROG_CLOUD"
             )    
         }
     }    
+    stage('Build & sonarcube'){
+        steps{
+            withSonarQubeEnv('sonar-cloud'){
+                sh 'mvn -f springpetclinic/spring-petclinic/pom.xml clean install sonar:sonar -Dsonar.organization=sridhardevops -Dsonar.token=38a2b058cb0a7a17862cf58f21c431a3945582cd -Dsonar.projectKey=sridhardevops'
+            }                                                  
+
+        }
+    } 
     stage('reporting') {
             steps {
+                archiveArtifacts onlyIfSuccessful : true,
+                       artifacts: '**/target/spring-*.jar'
                 junit testResults: '**/target/surefire-reports/TEST-*.xml'
             }
-        }    
+        }
+    }     
     }
-}
-
-
-    
+     
